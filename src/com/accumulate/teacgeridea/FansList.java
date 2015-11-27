@@ -64,7 +64,10 @@ public class FansList extends HttpServlet {
 			for (TeacherAttention attention : attentions) {
 				int uId = attention.getUserId();
 				User user = UserServer.findUserNikNameById(uId);
+				String uName=user.getUserName();
+				if(uName!=null){
 				users.add(user);
+				}
 			}
 		}
 

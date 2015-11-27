@@ -1,53 +1,19 @@
 package com.accumulate.test;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Timer;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
-import org.json.JSONObject;
-
-import com.accumulate.timertask.MobileState;
-import com.accumulate.utils.XinGeUtil;
-import com.tencent.xinge.XingeApp;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 
 public class Test {
-	
-	private static String time="2015-10-30 10:20:17.000";
-	private static SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 
-	public static void main(String[] args) {/*
-		ExecutorService service = Executors.newCachedThreadPool();
-		for (int i = 0; i < 10; i++) {
-			final int index = i;
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			service.execute(new Runnable() {
-				public void run() {
-					String name = Thread.currentThread().getName();
-					System.out.println("正在执行线程:" + name + " p:" + index);
-
-				}
-			});
-		}
-	*/
-	/*XingeApp xing=new XingeApp(XinGeUtil.APP_ID, XinGeUtil.APP_KEY);
-	JSONObject devCount=xing.queryDeviceCount();
-	System.out.println("devCount:"+devCount);
-	JSONObject TAGE=xing.queryTags();
-	System.out.println("TAG:"+TAGE);*/
-		/*String str="20151118154456,0 1001118154456693600";
-		System.out.println("str:"+str.split(",")[0]);
-		String ret=str.split(",")[1];
-		System.out.println("ret_code："+ret.split(" ")[0]);
-		System.out.println("ret_code："+ret.split(" ")[1]);*/
-		JSONObject res=XinGeUtil.getInstance(false).pushAllUpdateDevice(0, "apk版本更新提醒", "可更新到最新版本1.3");
-        System.out.println("res:"+res.toString());
+	public static void main(String[] args) {
+		String str="<iframe width='780' height='520' frameborder='0' src='http://cloud.quklive.com/cloud/a/embed/9445486731118962?autoPlay=true'></iframe>";
+		Document document=Jsoup.parse(str);
+		Element ec=document.select("iframe").first();
+		String src=ec.attr("src");
+		System.out.println("src:"+src);
+		
 	}
 
 }
